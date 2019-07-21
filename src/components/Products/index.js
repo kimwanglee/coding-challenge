@@ -5,7 +5,7 @@ import Filter from '../Filter';
 import List from '../List';
 import { getProducts, searchProductByName } from '../../actions/product';
 
-export class ProductList extends Component {
+class Products extends Component {
     constructor(props) {
         super(props);
 
@@ -46,7 +46,7 @@ export class ProductList extends Component {
     }
 }
 
-ProductList.propTypes = {
+Products.propTypes = {
     products: PropTypes.array.isRequired,
     searchProductByName: PropTypes.func.isRequired,
     getProducts: PropTypes.func.isRequired,
@@ -56,6 +56,6 @@ const mapStateToProps = state => {
     return {
       products: state.filteredData
     };
-  };
+};
 
-export default connect(mapStateToProps, { getProducts, searchProductByName })(ProductList);
+export default connect(mapStateToProps, { getProducts, searchProductByName })(Products);

@@ -12,7 +12,7 @@ function App() {
         <div className="App">
           <Switch>
             <Route exact path="/products" component={ListView} />
-            <Route path="/products/:id" component={DetailView} />
+            <Route path="/products/:brand/:id" component={DetailView} />
             <Route render={() => <Redirect to="/products" />} />
           </Switch>
         </div>

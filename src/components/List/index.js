@@ -8,7 +8,7 @@ const List = props => (
             <ul className="list">
                 {props.data.map(item => ( 
                 <li className="list--item" key={item.id}>
-                <Link to={`products/${item.id}`}>
+                <Link to={`products/${item.brand}/${item.id}`}>
                     <span>{item.name}</span><span>{item.price} €</span>
                 </Link>
             </li>
