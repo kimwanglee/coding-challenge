@@ -11,18 +11,22 @@ class Products extends Component {
 
         this.state = {
             brand: 'almay',
-            products: []
+            products: [],
+            type: ''
         };
     }
 
     componentDidMount() {
-        const { brand } = this.state;
-        this.props.getProducts(brand)
+        const { brand, type } = this.state;
+        this.props.getProducts(brand, type)
     }
 
-    getProductsByBrand = brand => {
-        this.setState({ brand }, () => {
-            this.props.getProducts(brand);
+    getProducts = evt => {
+        this.setState({
+            [evt.target.name]: evt.target.value
+          }, () => {
+            const { brand, type } = this.state;
+            this.props.getProducts(brand, type);
         });
     }
 
@@ -38,7 +42,7 @@ class Products extends Component {
                 <h1>Product List</h1>
                 <Filter 
                     onProductNameChange={this.searchProductsByName} 
-                    onBrandChange={this.getProductsByBrand} 
+                    onSelectChange={this.getProducts} 
                 />
                 <List data={products} />
             </div>

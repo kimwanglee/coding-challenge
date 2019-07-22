@@ -64,6 +64,18 @@ export class Filter extends Component {
                 'wet n wild',
                 'zorah',
                 'zorah biocosmetiques',
+            ],
+            types: [
+                { label: 'All', value: '' },
+                { label: 'Blush', value: 'blush' },
+                { label: 'Bronzer', value: 'bronzer' },
+                { label: 'Eyebrow', value: 'eyebrow' },
+                { label: 'Eyeliner', value: 'eyeliner' },
+                { label: 'Foundation', value: 'foundation' },
+                { label: 'Lip liner', value: 'lip_liner' },
+                { label: 'Lipstick', value: 'lipstick' },
+                { label: 'Mascara', value: 'mascara' },
+                { label: 'Nail polish', value: 'nail_polish' }
             ]
         };
     }
@@ -72,12 +84,12 @@ export class Filter extends Component {
         this.props.onProductNameChange(evt.target.value);
     }
 
-    getProductsByBrand = evt => {
-        this.props.onBrandChange(evt.target.value);
+    getProducts = evt => {
+        this.props.onSelectChange(evt);
     }
 
     render() {
-        const { brands } = this.state;
+        const { brands, types } = this.state;
 
         return (
             <div className="filter-bar">
@@ -87,8 +99,14 @@ export class Filter extends Component {
                 </div>
                 <div className="form-field">
                     <label>Brand</label>
-                    <select name="brand" onChange={this.getProductsByBrand}>
+                    <select name="brand" onChange={this.getProducts}>
                         {brands.map(brand => (<option key={brand} value={brand}>{brand}</option>))}
+                    </select>
+                </div>
+                <div className="form-field">
+                    <label>Product Type</label>
+                    <select name="type" onChange={this.getProducts}>
+                        {types.map(type => (<option key={type.value} value={type.value}>{type.label}</option>))}
                     </select>
                 </div>
             </div>
@@ -97,7 +115,7 @@ export class Filter extends Component {
 }
 
 Filter.propTypes = {
-    onBrandChange: PropTypes.func.isRequired,
+    onSelectChange: PropTypes.func.isRequired,
     onProductNameChange: PropTypes.func.isRequired
 };
 

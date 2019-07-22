@@ -34,9 +34,9 @@ export const searchProductByName = name => {
     };
 }
 
-export const getProducts = brand => {
+export const getProducts = (brand, type) => {
     return async dispatch => {
-        return fetchProducts(brand).then(
+        return fetchProducts(brand, type).then(
             products => dispatch(setProducts(products)),
             error => dispatch(setError(error))
         );
